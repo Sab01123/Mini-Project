@@ -28,6 +28,14 @@ public class GlobalException {
 		
 		return new ResponseEntity<Error>(err, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(CategoryException.class)
+	public ResponseEntity<Error> categoryException(CategoryException e, WebRequest web){
+		
+		Error err = new Error(e.getMessage(),LocalDate.now(),LocalTime.now(),web.getDescription(false));
+		
+		return new ResponseEntity<Error>(err, HttpStatus.BAD_REQUEST);
+	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Error> exception(Exception e, WebRequest web){
