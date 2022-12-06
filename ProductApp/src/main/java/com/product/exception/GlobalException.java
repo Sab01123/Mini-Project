@@ -26,7 +26,7 @@ public class GlobalException {
 		
 		Error err = new Error(e.getMessage(),LocalDate.now(),LocalTime.now(),web.getDescription(false));
 		
-		return new ResponseEntity<Error>(err, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Error>(err, HttpStatus.BAD_GATEWAY);
 	}
 	
 	@ExceptionHandler(CategoryException.class)
@@ -34,9 +34,17 @@ public class GlobalException {
 		
 		Error err = new Error(e.getMessage(),LocalDate.now(),LocalTime.now(),web.getDescription(false));
 		
-		return new ResponseEntity<Error>(err, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Error>(err, HttpStatus.EXPECTATION_FAILED);
 	}
 
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<Error> customerException(CustomerException e, WebRequest web){
+		
+		Error err = new Error(e.getMessage(),LocalDate.now(),LocalTime.now(),web.getDescription(false));
+		
+		return new ResponseEntity<Error>(err, HttpStatus.NOT_FOUND);
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Error> exception(Exception e, WebRequest web){
 		

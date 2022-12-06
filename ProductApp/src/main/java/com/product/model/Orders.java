@@ -9,16 +9,18 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Entity
-public class Customer extends AbstractUser{
 
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Orders {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer customerId;
+	private Integer orderId;
 	
 	@OneToOne
-	private Cart cart;
+	private Customer customer;
+	
 }
